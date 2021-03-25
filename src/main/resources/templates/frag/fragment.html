@@ -1,0 +1,16 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Fragment</title>
+    </head>
+    <body>
+        <h1>Hello Fragment</h1>
+        <div id="foo"
+             th:insert="frag/embedded :: hoge('HOGE', 'INSERT')">
+        </div>
+        <div id="bar"
+             th:replace="frag/embedded :: hoge('HOGE', 'REPLACE')">
+        </div>
+    </body>
+</html>

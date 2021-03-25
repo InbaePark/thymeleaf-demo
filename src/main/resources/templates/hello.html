@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Thymeleaf</title>
+    </head>
+    <body>
+        <b>変数出力</b>
+        <h1 th:text="${message} ?: 'url is not hello'"></h1>
+        <h1>[[${modelValue} ?: 'url is not hello1']]</h1>
+        <br/>
+        <b>フィールド・プロパティ・メソッドの参照</b>
+        <div th:if="${hoge}">
+            <div th:object="${hoge}">
+                <div th:text="*{publicField}"></div>
+                <div th:text="*{['publicField']}"></div>
+                <div th:text="*{publicMethod()}"></div>
+                <div th:text="*{publicValue}"></div>
+                <div th:text="*{['publicValue']}"></div>
+            </div>
+        </div>
+        <br/>
+        <b>メッセージリソース</b>
+        <h1 th:text="#{foo.message}"></h1>
+        <h1>[[#{bar.message}]]</h1>
+    </body>
+</html>

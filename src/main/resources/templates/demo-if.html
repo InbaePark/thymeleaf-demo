@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Thymeleaf</title>
+    </head>
+    <body>
+        <ul>
+            <li th:if="${booleanTrue}">booleanTrue</li>
+            <li th:if="${booleanFalse}">booleanFalse</li>
+            <li th:if="${numericZero}">0</li>
+            <li th:if="${numericOne}">numericOne</li>
+            <li th:if="${charZero}">charZero</li>
+            <li th:if="${stringEmpty}">stringEmpty</li>
+            <li th:if="${stringZero}">stringZero</li>
+            <li th:if="${stringOff}">stringOff</li>
+            <li th:if="${stringNo}">stringNo</li>
+            <li th:if="${stringFalse}">stringFalse</li>
+            <li th:if="${anyObject}">anyObject</li>
+            <li th:if="${nullValue}">nullValue</li>
+        </ul>
+    </body>
+</html>

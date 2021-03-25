@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Thymeleaf</title>
+    </head>
+    <body>
+        <div th:each="element : ${list}">[[${element}]]</div>
+        <ul>
+            <li th:each="element, status : ${list}">
+                index = [[${status.index}]],
+                count = [[${status.count}]],
+                size = [[${status.size}]],
+                current = [[${status.current}]],
+                even = [[${status.even}]],
+                odd = [[${status.odd}]],
+                first = [[${status.first}]],
+                last = [[${status.last}]]
+            </li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layout/layout :: layout(~{::title},~{::body/content()})}">
+    <head>
+        <title>Create Staff Information</title>
+    </head>
+    <body>
+        <h2>暗黙的に参照できるオブジェクト</h2>
+        <span th:text="${#httpServletRequest}"></span>
+        <span th:text="${#httpSession}"></span>
+        <span th:text="${param}"></span>
+        <span th:text="${session}"></span>
+        <span th:text="${application}"></span>
+        <br/>
+        <h2>Springビーン</h2>
+        <h1 th:text="${@mySpringBean.hello()}"></h1>
+        <h1>[[${@mySpringBean.hello()}]]</h1>
+    </body>
+</html>

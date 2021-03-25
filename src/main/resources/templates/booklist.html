@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layout/layout :: layout(~{::title},~{::body/content()})}">
+    <head>
+        <title>本屋さん</title>
+    </head>
+    <body>
+        <form action="/book/search" method="post">
+            <label>ID:<input class="input" type="text" name="id"></label><br>
+            <div><input class="search" type="submit" value="検索"/></div>
+        </form>
+        <form action="/book/search" method="post">
+            <div><input class="list" type="submit" name="showList" value="一覧表示"/></div>
+        </form>
+        <table id="book-emplist-table" class="table table-bordered table-hover table-lg">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>書籍名</th>
+                    <th>巻</th>
+                    <th>著者名</th>
+                    <th>刊行日</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+                var bookempdata = null;
+                $(function(){
+                    // datatableの設定を変更
+                    var bookemptable = $("#book-emplist-table").DataTable({
+                        "bPaginate": true,
+                        "bLengthChange": false,
+                        "bFilter": false,
+                        "bSort": false,
+                        "bInfo": false,
+                        "bAutoWidth": true,
+                        "ajax": { 
+                            url: /*[[@{/getbooklist}]]*/ '/getbooklist',
+                            dataSrc: '' },
+                        "columns": [
+                            { data: "id" },
+                            { data: "bookName" },
+                            { data: "volumeNum" },
+                            { data: "authorName" },
+                            { data: "publishedDate" },
+                        ],
+                        "columnDefs": [
+                            { targets: 0, width: 50 },
+                            { targets: 1, width: 400 },
+                            { targets: 2, width: 60 },
+                            { targets: 3, width: 180 },
+                            { targets: 4, width: 180 },
+                            {targets:'_all',className : 'dt-head-center'},
+                        ]
+                    });
+                    //一覧をクリックした
+                    $('#book-emplist-table tbody').on("click", "tr", function() {
+                        if ($(this).find('.dataTables_empty').length == 0) {
+                            if ( $(this).hasClass('selected') ) {
+                                $(this).removeClass('selected');
+                            } else {
+                                bookemptable.$('tr.selected').removeClass('selected');
+                                $(this).addClass('selected');
+                            }
+                            bookempdata=$('#book-emplist-table').dataTable().fnGetData(this);
+                        }
+                    });
+                })
+            /*]]>*/
+        </script>
+    </body>
+</html>
